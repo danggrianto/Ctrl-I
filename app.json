@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CtrlI",
-    "slug": "expo-template-tabs",
+    "slug": "inventory-managemnt",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

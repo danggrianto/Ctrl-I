@@ -6,7 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useColorScheme } from "react-native";
 
 import Colors from "../constants/Colors";
-import TabOneScreen from "../screens/TabOneScreen";
+import { Button } from "../components/Themed";
+import ListsScreen from "../screens/ListsScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 
 const BottomTab = createBottomTabNavigator();
@@ -16,24 +17,25 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Lists"
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Lists"
+        component={ListsNavigation}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-list" color={color} />
           ),
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Settings"
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-cog" color={color} />
           ),
         }}
       />
@@ -49,17 +51,27 @@ function TabBarIcon(props) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator();
+const ListsStack = createStackNavigator();
 
-function TabOneNavigator() {
+function ListsNavigation() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: "Tab One Title" }}
+    <ListsStack.Navigator>
+      <ListsStack.Screen
+        name="ListsScreen"
+        component={ListsScreen}
+        options={{
+          headerTitle: "Lists",
+          headerRight: () => (
+            <Ionicons
+              style={{ marginRight: 10 }}
+              size={30}
+              color="red"
+              nome="ios-plus"
+            />
+          ),
+        }}
       />
-    </TabOneStack.Navigator>
+    </ListsStack.Navigator>
   );
 }
 
